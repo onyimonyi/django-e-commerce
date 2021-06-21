@@ -1,0 +1,62 @@
+<div class="search-button">
+    <a href="javascript:void(0);" class="waves-effect waves-button waves-classic show-search"><i
+            class="fa fa-search"></i></a>
+</div>
+
+
+<div class="main-container">
+    <div class="row">
+        {% for item in object_list %}
+        <p>
+        <div class="col-lg-3">
+            <img class="thumbnail" src={{ item.picture.url}} height="200"/>
+            <div class="box-element product">
+                <h6><strong>{{ item.title|upper }}</strong></h6>
+                <hr>
+                <button class="btn btn-outline-secondary add-btn ">
+                    <a href="{{  item.get_add_to_cart_url }}">add to cart</a></button>
+                <a href="{{ item.get_absolute_url }}">view</a>
+                <h4 style="display: inline-block; float: right">{% if item.discount_price %}
+                    ₦{{ item.discount_price }}
+                    {% else %}
+                    ₦{{ item.price }}
+                    {% endif %}</h4>
+            </div>
+        </div>
+        <br>
+        <span class="badge badge-pill {{ item.get_label_display}}-color">NEW</span>
+        </p>
+
+        {% endfor %}
+
+
+    </div>
+    <div class="pagination">
+        <nav>
+            {% if is_paginated %}
+            <ul>
+                <div class="pagination">
+                 <span class="step-links">
+                 {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+                </div>
+
+            </ul>
+        </nav>
+        {% endif %}
+
+    </div>
+
+</div>

@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<main>
+    <div class="container ">
+        <h2 class="my-5 h2 bg-primary text-center">Payment</h2>
+        <div class="card-body">
+            <div class="col-md-12 mb-4">
+                <div class="">
+                   {{ form|crispy }}
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                {% include "order_snippet.html" %}
+            </div>
+        </div>
+    </div>
+
+</main>
+{% endblock %}

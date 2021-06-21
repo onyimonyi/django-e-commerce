@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <body class="page-header-fixed  pace-done">
+        <main class="page-content content-wrap">
+
+            <div class="page-inner" style="min-height:1080px !important">
+                <div class="page-title">
+                    <h3>Dashboard</h3>
+                    <div class="page-breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="active float-left"><a href="index-2.html">Home</a></li>
+                            <li class="active float-right">Dashboard</li>
+                        </ol>
+                    </div>
+                </div>
+                <div id="main-wrapper">
+                    <div class="row">
+                        {% for item in item %}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="panel info-box panel-white">
+                                {% if item.discount_price %}
+                                ₦{{ item.discount_price }}
+                                {% else %}
+                                ₦{{ item.price }}
+                                {% endif %}</h4>
+                                <div class="panel-body">
+
+                                    <div class="info-box-stats">
+                                        <img class="thumbnail" src={{ item.picture.url }} height="200"/>
+                                        <h6><strong>{{ item.title|upper }}</strong></h6>
+                                    </div>
+                                    <div class="info-box-icon">
+
+                                    </div>
+                                    <div class="info-box-progress">
+                                        <div class="float-left">
+                                            <button class="btn btn-warning round-circle add-btn ">
+                                                <a href="{{  item.get_add_to_cart_url }}">add to cart</a></button>
+                                        </div>
+                                        <div class="float-right">
+                                            <button class="btn btn-warning  add-btn ">
+                                                <a href="{{ item.get_absolute_url }}">view</a></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <div class="pagination justify-content-center">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo;  first</a>
+            <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">next</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-9 col-md-12">
+                        <div class="panel panel-white">
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="visitors-chart">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">Visitors</h4>
+                                        </div>
+                                        <div class="panel-body">
+                                            <div id="flotchart1" style="padding: 0px; position: relative;">
+                                                <canvas class="flot-base" width="490" height="340"
+                                                        style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 490px; height: 340px;"></canvas>
+                                                <div class="f  lot-text"
+                                                     style="position: absolute; inset: 0px; font-size: smaller; color: rgb(84, 84, 84);">
+                                                    <div class="flot-x-axis flot-x1-axis xAxis x1Axis"
+                                                         style="position: absolute; inset: 0px; display: block;">
+                                                        <div class="flot-tick-label tickLabel"
+                                                             style="position: absolute; max-width: 61px; top: 325px; left: 21px; text-align: center;">
+                                                            1
+                                                        </div>
+                                                        <div class="flot-tick-label tickLabel"
+                                                             style="position: absolute; max-width: 61px; top: 325px; left: 97px; text-align: center;">
+                                                            2
+                                                        </div>
+                                                        <div class="flot-tick-label tickLabel"
+                                                             style="position: absolute; max-width: 61px; top: 325px; left: 173px; text-align: center;">
+                                                            3
+                                                        </div>
+                                                        <div class="flot-tick-label tickLabel"
+                                                             style="position: absolute; max-width: 61px; top: 325px; left: 249px; text-align: center;">
+                                                            4
+                                                        </div>
+                                                        <div class="flot-tick-label tickLabel"
+                                                             style="position: absolute; max-width: 61px; top: 325px; left: 325px; text-align: center;">
+                                                            5
+                                                        </div>
+                                                        <div class="flot-tick-label tickLabel"
+                                                             style="position: absolute; max-width: 61px; top: 325px; left: 401px; text-align: center;">
+                                                            6
+                                                        </div>
+                                                        <div class="flot-tick-label tickLabel"
+                                                             style="position: absolute; max-width: 61px; top: 325px; left: 477px; text-align: center;">
+                                                            7
+                                                        </div>
+                                                    </div>
+                                                    <div class="flot-y-axis flot-y1-axis yAxis y1Axis"
+                                                         style="position: absolute; inset: 0px; display: block;">
+                                                        <div class="flot-tick-label tickLabel"
+                                                             style="position: absolute; top: 313px; left: 13px; text-align: right;">
+                                                            0
+                                                        </div>
+                                                        <div class="flot-tick-label tickLabel"
+                                                             style="position: absolute; top: 251px; left: 7px; text-align: right;">
+                                                            20
+                                                        </div>
+                                                        <div class="flot-tick-label tickLabel"
+                                                             style="position: absolute; top: 189px; left: 7px; text-align: right;">
+                                                            40
+                                                        </div>
+                                                        <div class="flot-tick-label tickLabel"
+                                                             style="position: absolute; top: 127px; left: 7px; text-align: right;">
+                                                            60
+                                                        </div>
+                                                        <div class="flot-tick-label tickLabel"
+                                                             style="position: absolute; top: 65px; left: 7px; text-align: right;">
+                                                            80
+                                                        </div>
+                                                        <div class="flot-tick-label tickLabel"
+                                                             style="position: absolute; top: 3px; left: 0px; text-align: right;">
+                                                            100
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <canvas class="flot-overlay" width="490" height="340"
+                                                        style="direction: ltr; position: absolute; left: 0px; top: 0px; width: 490px; height: 340px;"></canvas>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="stats-info">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">Browser Stats</h4>
+                                        </div>
+                                        <div class="panel-body">
+                                            <ul class="list-unstyled">
+                                                <li>Google Chrome
+                                                    <div class="text-success pull-right">32%<i
+                                                            class="fa fa-level-up"></i></div>
+                                                </li>
+                                                <li>Firefox
+                                                    <div class="text-success pull-right">25%<i
+                                                            class="fa fa-level-up"></i></div>
+                                                </li>
+                                                <li>Internet Explorer
+                                                    <div class="text-success pull-right">16%<i
+                                                            class="fa fa-level-up"></i></div>
+                                                </li>
+                                                <li>Safari
+                                                    <div class="text-danger pull-right">13%<i
+                                                            class="fa fa-level-down"></i></div>
+                                                </li>
+                                                <li>Opera
+                                                    <div class="text-danger pull-right">7%<i
+                                                            class="fa fa-level-down"></i></div>
+                                                </li>
+                                                <li>Mobile &amp; tablet
+                                                    <div class="text-success pull-right">4%<i
+                                                            class="fa fa-level-up"></i></div>
+                                                </li>
+                                                <li>Others
+                                                    <div class="text-success pull-right">3%<i
+                                                            class="fa fa-level-up"></i></div>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-white " style="height: 94%;">
+                            {% include "order_snippet.html" %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col ">
+                    <div class="panel panel-white">
+                        <div class="row">
+                            <div class="col-sm-8">
+                                <div class="visitors-chart">
+                                    <div class="panel-heading justify-content-center">
+                                        <h4 class="panel-title ">Visitors</h4>
+                                    </div>
+                                    <div class="panel-body">
+                                        <div id="flotchart1" style="padding: 0px; position: relative;">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </main><!-- Page Content -->
+        </body>
+    </div>
+</div>
+{% endblock %}

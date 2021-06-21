@@ -1,0 +1,28 @@
+<div>
+    <h2 class=" h2  text-center">your cart</h2>
+
+    <ul class="list-group mb-3 z-depth-1">
+        {% for order_item in order.items.all %}
+        <li class="list-group-item d-flex justify-content-between ">
+            <div>
+                <h6 class="my-0">{{ order_item.quantity }} of {{ order_item.item.title }}</h6>
+                <small class="">{{ order_item.item.description }}</small>
+            </div>
+            <span class="text-muted"> ₦{{ order_item.get_final_price }}</span>
+        </li>
+        {% endfor %}
+        {% if order.coupon %}
+        <li class="list-group-item d-flex justify-content-between bg-light">
+            <div class="text-success">
+                <h6 class="my-0">Promo code</h6>
+                <small>example code</small>
+            </div>
+            <span class="text-success"> ₦</span>
+        </li>
+        {% endif %}
+        <li class="list-group-item d-flex justify-content-between">
+            <span> Total (NGN)</span>
+            <strong> ₦{{ order.get_total }}</strong>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,46 @@
+{% load cart_template_tags %}
+
+<nav class="navbar navbar-expand-md bg-warning rounded-top " style="height: 100px;">
+
+    <!-- Brand -->
+    <a class="navbar-brand" href="#" style="flex : auto !important">Navbar</a>
+
+    <!-- Toggler/collapsibe Button -->
+
+
+    <!-- Navbar links -->
+    <div class="collapse navbar-collapse " id="collapsibleNavbar  mr-2">
+        <ul class="nav justify-content-center mr-2">
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+                <a class="nav-link wave-effect" href="{% url 'products:order-summary' %}">
+                    <span class="badge text-light z-depth-1 nr-1"> {{ request.user|cart_item_count }} </span>
+
+                    <span id="cart-logo" class="clearfix  d-sn-inline-block text-light"> <i
+                            class="fa fa-cart-plus "></i>  cart </span>
+                </a>
+            </li>
+            <li class="nav-item ">
+                <div>
+                    <a class="nav-link active" href="{% url 'accounts:logout' %}">
+                        <span class=" d-sn-inline-block text-light ">logout</span>
+                    </a>
+                </div>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a class="nav-link active" href="">
+                    <span class="clearfix d-sn-inline-block">login</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active">
+                    <span class="clearfix d-none d-sn-inline-block">sign up</span>
+                </a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+

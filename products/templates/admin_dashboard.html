@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div ></div>
+    </div>
+    <h2><a class="btn btn-primary btn-sm  btn-block" href="{% url 'products:product-create' %}"><b>POST NEW PRODUCT</b></a>
+    </h2>
+
+    <table class="table table-bordered table-dark">
+        <thead>
+        <tr>
+            <th scope="col" class="text-center"><b>item review</b></th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item_detail in object %}
+        <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td></td>
+            <td>{{ item_detail.title }}</td>
+             {% if item_detail.discount_price %}
+               <td> ₦{{ item_detail.discount_price }}
+                {% else %}
+            <td>₦{{ item_detail.price }}</td>
+                {% endif %}
+
+            <td><a class="btn btn-sm btn-danger" href="{% url 'products:delete-item' item_detail.id %}">Delete</a></td>
+            <td><a class="btn btn-sm btn-success" href="{% url 'products:update-item' item_detail.id %}">update</a></td>
+
+
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}

@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<main>
+    <div class="container wow fadeIn">
+        <h2 class="my-5  bg-primary text-center ">Payment</h2>
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                <div class="card-body text-center">
+                    <form class="" method="POST" >{% csrf_token %}
+                        <script src="https://checkout.flutterwave.com/v3.js"></script>
+                        <button type="button" onClick="makePayment()">Pay Now</button>
+                    </form>
+                    <script>
+                      function makePayment() {
+                        FlutterwaveCheckout({
+                          public_key: "FLWPUBK_TEST-31d61a13026483fc38f15f0e90232374-X",
+                          tx_ref: "hooli-tx-1920bbtyt",
+                          amount: {{ order.get_total }},
+                          currency: "NGN",
+                          country: "NG",
+                          payment_options: "card,mobilemoney,ussd",
+                          customer: {
+                            email: "user@gmail.com",
+                            phone_number: "08102909304",
+                            name: "yemi desola",
+                          },
+                          callback: function (data) { // specified callback function
+                          console.log(data)
+                          if(data.status == 'successful'){
+                             $.ajax({
+                                url: 'http://localhost:8000/products/webhook/',
+                                method: 'POST',
+                                data: data,
+                              });
+                          }else{
+                          alert('Transaction failed')
+
+                          }
+
+                          },
+                          customizations: {
+                            title: "My store",
+                            description: "Payment for items in cart",
+                            logo: "https://assets.piedpiper.com/logo.png",
+                          },
+                        });
+                      }
+                    </script>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 mb-4">
+                {% include "order_snippet.html" %}
+            </div>
+        </div>
+    </div>
+
+</main>
+{% endblock %}

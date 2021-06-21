@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<form action="{% url 'products:delete-item' object.id  %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+    {{ form.as_p }}
+    do you want to delete the Item "{{ object.title }}- {{ object.price }} {{ object.picture }}   "?
+    <input type="submit" value="yes" /> <a href="../">cancel</a>
+
+</form>
+{% endblock %}

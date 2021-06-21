@@ -1,0 +1,64 @@
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block head_title %}{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css"
+          rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <link rel="icon" type=
+            "image/vnd.microsoft.icon"
+          href="http://demo2.posthemes.com/pos_rozer/layout2/img/favicon.ico?1583806731">
+    <link rel="shortcut icon" type="image/x-icon"
+          href="http://demo2.posthemes.com/pos_rozer/layout2/img/favicon.ico?1583806731">
+
+    <script src="{% static 'ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js' %}"></script>
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&amp;display=swap&amp;subset=cyrillic,cyrillic-ext,greek,greek-ext,latin-ext,vietnamese"
+          type="text/css" media="all">
+    <link rel="stylesheet" href="{% static 'themes/theme_rozer2/assets/cache/theme-73c64410.css' %}" type="text/css"
+          media="all">
+
+
+    <link href="{% static 'styles.css' %}" rel="stylesheet" type="text/css">
+    <script src="{% static 'js.js' %}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+
+</head>
+
+<body>
+{% if messages %}
+{% for message in messages %}
+<div class="alert alert-{{ message.tags }}" role="alert">
+    {{ message }}
+</div>
+{% endfor %}
+{% endif %}
+
+{% block content %}
+replace me
+{% endblock %}
+
+{% block extra_body %}
+{% endblock %}
+<script src="{% static 'main/js/base.js' %}"></script>
+<script src="{% static 'main/js/modern.min.js' %}"></script>
+<script src="{% static 'main/js/modern.js' %}"></script>
+
+
+</body>
+<footer>
+    {% block footer %}
+    {% endblock footer %}
+
+</footer>
+
+</html>
